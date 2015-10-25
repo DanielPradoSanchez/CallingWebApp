@@ -35,7 +35,6 @@ callList = CallList()
 
 ACCOUNT_SID = ""
 AUTH_TOKEN = ""
-client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 callFromNumber = ""
 
 
@@ -69,5 +68,6 @@ def add_call():
 
 def make_call(number_to_call):
     # To find these visit https://www.twilio.com/user/account
+    client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
     call = client.calls.create(to=number_to_call, from_=callFromNumber,
                            url='https://sheltered-temple-5934.herokuapp.com/')

@@ -1,0 +1,1 @@
+web: gunicorn makeCalls:app --log-file -
