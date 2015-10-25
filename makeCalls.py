@@ -50,8 +50,8 @@ def add_call():
 	authToken = request.form['auth_token']
 	timeToCall = request.form['time_to_call']
 
-	allEntriesAnswered = (callNumber and callFrom and accountSid and authToken and timeToCall)
-	if (allEntriesAnswered):
+	#allEntriesAnswered = (callNumber and callFrom and accountSid and authToken and timeToCall)
+	if (callNumber and timeToCall):
 		# Take date input and change to python datetime
 		call_date = datetime(*[int(v) for v in request.form['time_to_call'].replace('T', '-').replace(':', '-').split('-')])
 
