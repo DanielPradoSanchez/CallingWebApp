@@ -19,7 +19,6 @@ from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack
 from model import CallList
 from twilio.rest import TwilioRestClient
-import twilio.twiml
 from threading import Timer
 import praw
 
@@ -33,9 +32,6 @@ app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
 
 # initialize empty call list
 callList = CallList()
-
-myName = 'Daniel Prado'
-
 
 
 @app.route('/')
@@ -91,18 +87,6 @@ def add_call():
     else:
         flash('Your call was not recorded. Please make sure all fields have an answer')
     return redirect(url_for('public_calls'))
-
-@app.route("/get_content", methods=['GET', 'POST'])
-def hello():
-	myTest = praw.Reddit('myTest1')
-	topContent = myTest.get_front_page(limit = 1)
-	listOfTopContentTitles = [x.title for x in topContent]
-	topContentTitle = listOfTopContentTitles[0]
-    """Respond to incoming requests."""
-    resp = twilio.twiml.Response()
-    resp.say('My name is ' + myName)
-    resp.say('The top content on Reddit right now is ' + topContentTitle)
-    return str(resp)
 
 def make_call(number_to_call):
     # To find these visit https://www.twilio.com/user/account
