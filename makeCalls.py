@@ -49,11 +49,7 @@ def add_call():
 	authToken = request.form['auth_token']
 	timeToCall = request.form['time_to_call']
 
-	allEntriesAnswered = (callNumber
-						and callFrom 
-						and accountSid 
-						and authToken 
-						and timeToCall)
+	allEntriesAnswered = (callNumber and callFrom and accountSid and authToken and timeToCall)
     if (allEntriesAnswered):
         # Take date input and change to python datetime
         call_date = datetime(*[int(v) for v in request.form['time_to_call'].replace('T', '-').replace(':', '-').split('-')])
@@ -79,7 +75,7 @@ def add_call():
         	# or try catch method
 
             callList.appendCall(callNumber, call_date)
-            t = Timer(secs, make_call(callNumber))
+            t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
             t.start()
             flash('Your call was recorded')
         else:
@@ -88,8 +84,8 @@ def add_call():
         flash('Your call was not recorded. Please make sure all fields have an answer')
     return redirect(url_for('public_calls'))
 
-def make_call(number_to_call):
+def make_call(numberToCall, callFromNumber, SID, token):
     # To find these visit https://www.twilio.com/user/account
-    #client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
-    #call = client.calls.create(to=number_to_call, from_=callFromNumber,
-    #                       url='https://sheltered-temple-5934.herokuapp.com/')
+    client = TwilioRestClient(SID, token)
+    call = client.calls.create(to=numberToCall, from_=callFromNumber,
+                           url='https://sheltered-temple-5934.herokuapp.com/')
