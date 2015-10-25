@@ -21,8 +21,14 @@
     <form action="{{ url_for('add_call') }}" method="post">
       What number are you calling?
       <p><input type="text" name="call_number" size="60"><br>
+      What number are you calling from (verified on Twilio account)?
+      <p><input type="text" name="call_number_from" size="60"><br>
+      Input the SID associated with the account:
+      <p><input type="text" name="account_sid" size="60"><br>
+      Input the authentication token associated with the account:
+      <p><input type="text" name="auth_token" size="60"><br>
       Select a date and time for the call:
-      <p><input type="datetime-local" name="time_to_call" min ="2015-10-24" size="60"><!--
+      <p><input type="datetime-local" name="time_to_call" size="60"><!--
       --><input type="submit" value="Share">
     </form>
   </div>
