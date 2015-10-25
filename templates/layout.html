@@ -1,8 +1,8 @@
 <!doctype html>
-<title>{% block title %}Welcome{% endblock %} | MiniTwit</title>
+<title>{% block title %}Welcome{% endblock %} | Twilio Call</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <div class="page">
-  <h1>MiniTwit</h1>
+  <h1>Twilio Call</h1>
   {% with flashes = get_flashed_messages() %}
     {% if flashes %}
       <ul class="flashes">
@@ -12,14 +12,13 @@
       </ul>
     {% endif %}
   {% endwith %}
-  <div class="body">
-<h2>Make A Call</h2>
+
+<div class="body">
+  <h2>Make A Call</h2>
   
   <div class="callBox">
     <h3>Who would you like to call?</h3>
     <form action="{{ url_for('add_call') }}" method="post">
-      What should the call say?
-      <p><input type="text" name="call_content" size="60"><br>
       What number are you calling?
       <p><input type="text" name="call_number" size="60"><br>
       Select a date and time for the call:
@@ -27,20 +26,14 @@
       --><input type="submit" value="Share">
     </form>
   </div>
-  <h2>Pending Calls</h2>
+  <h2>Pending/Completed Calls</h2>
   <ul class="calls">
   {% for call in calls %}
-    <li>Call Number: "{{ call.get_call_number()}}", Call Time: "{{ call.get_call_time()}}", Call Content: "{{ call.get_call_content()}}"</li>
+    <li>Call Number: "{{ call.get_call_number()}}", Call Time: "{{ call.get_call_time()}}"</li>
   {% endfor %}
   </ul>
-
-
-
-
-
-
   </div>
   <div class="footer">
-    MiniTwit &mdash; A Flask Application
+    Daniel Prado
   </div>
 </div>
