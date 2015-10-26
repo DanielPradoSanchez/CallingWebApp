@@ -16,7 +16,6 @@
 import time
 from datetime import datetime
 from datetime import timedelta
-import pytz
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack
 from model import CallList
@@ -79,13 +78,12 @@ def add_call():
         	# look online for api (authentication checking)
         	# If that's not an option, look into python callbacks
         	# or try catch method
-			try:
-				t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
-				callList.appendCall(callNumber, call_date)
-				t.start()
-				flash('Your call was recorded')
-			except twilio.TwilioRestException as e:
-				flash('Your call was not recorded. Some of the information did not match an account.')
+			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
+			callList.appendCall(callNumber, call_date)
+			t.start()
+			flash('Your call was recorded')
+			#except twilio.TwilioRestException as e:
+			#flash('Your call was not recorded. Some of the information did not match an account.')
 			
 		else:
 			pass
