@@ -74,13 +74,13 @@ def add_call():
         	# If that's not an option, look into python callbacks
         	# or try catch method
 			try:
-				print(2)
+				t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
+				callList.appendCall(callNumber, call_date)
+				t.start()
+				flash('Your call was recorded')
 			except twilio.TwilioRestException as e:
-				print e
-			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
-			callList.appendCall(callNumber, call_date)
-			t.start()
-			flash('Your call was recorded')
+				flash('Your call was not recorded. Some of the information did not match an account.')
+			
 		else:
 			flash('Your call was not recorded. Please select some time in the future for your call to be made.')
 	else:
