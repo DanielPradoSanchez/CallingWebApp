@@ -56,7 +56,6 @@ def add_call():
 		call_date = datetime(*[int(v) for v in request.form['time_to_call'].replace('T', '-').replace(':', '-').split('-')])
 
 		time_of_request=datetime.today()
-        
 
 		# Determines if the time the call is to executed is in the future.
 		# If the call is to be made in the future, the call goes through
@@ -74,7 +73,7 @@ def add_call():
         	# look online for api (authentication checking)
         	# If that's not an option, look into python callbacks
         	# or try catch method
-        	t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
+			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
 			callList.appendCall(callNumber, call_date)
 			t.start()
 			flash('Your call was recorded')
