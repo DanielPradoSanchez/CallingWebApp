@@ -71,7 +71,7 @@ def add_call():
 			secs=delta_t.total_seconds()
 			flash(str(secs))
 			callList.appendCall(callNumber, timeToCall)
-			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
+			Timer(secs, make_call,[callNumber, callFrom, accountSid,authToken]).start()
 			flash('Your call has been recorded')
 			
 		else:
