@@ -73,6 +73,10 @@ def add_call():
         	# look online for api (authentication checking)
         	# If that's not an option, look into python callbacks
         	# or try catch method
+			try:
+				print(2)
+			except twilio.TwilioRestException as e:
+				print e
 			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
 			callList.appendCall(callNumber, call_date)
 			t.start()
