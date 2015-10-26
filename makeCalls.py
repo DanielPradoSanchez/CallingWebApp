@@ -59,7 +59,7 @@ def add_call():
 
 		time_of_request_utc=datetime.today()
 		
-		time_of_request = timedelta(0,14400) + time_of_request_utc
+		time_of_request = timedelta(0,14400) + call_date
 		# Determines if the time the call is to executed is in the future.
 		# If the call is to be made in the future, the call goes through
 		# and is placed on a pending/completed list of calls to be made.
