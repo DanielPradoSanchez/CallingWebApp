@@ -29,7 +29,6 @@ SECRET_KEY = 'development key'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
-path_to_favicon = '/favicon.ico'
 
 # initialize empty call list
 callList = CallList()
@@ -37,7 +36,7 @@ callList = CallList()
 
 @app.route('/')
 def public_calls():
-	"""Displays the pending calls"""
+	# Displays the pending calls
 	return render_template('layout.html', calls=callList.getCalls())
 
 
@@ -51,7 +50,7 @@ def add_call():
 	timeToCall = request.form['time_to_call']
 
 	#allEntriesAnswered = (callNumber and callFrom and accountSid and authToken and timeToCall)
-	if (callNumber and timeToCall):
+	if (callNumber and timeToCall and accountSid and authToken and timeToCall):
 		# Take date input and change to python datetime
 		call_date = datetime(*[int(v) for v in request.form['time_to_call'].replace('T', '-').replace(':', '-').split('-')])
 
