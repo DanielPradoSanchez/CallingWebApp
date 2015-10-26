@@ -80,13 +80,8 @@ def add_call():
 
 def make_call(numberToCall, callFromNumber, SID, token):
     # To find these visit https://www.twilio.com/user/account
-	callList.appendCall(callNumber, timeToCall)
-	try:
-		client = TwilioRestClient(SID, token)
-		call = client.calls.create(to=numberToCall, from_=callFromNumber, url='https://sheltered-temple-5934.herokuapp.com/')
-		flash('Your call was recorded')
-	except:
-		flash('Something went wrong')
-		return redirect(url_for('public_calls'))
+    callList.appendCall(callNumber, timeToCall)
+	client = TwilioRestClient(SID, token)
+	call = client.calls.create(to=numberToCall, from_=callFromNumber, url='https://sheltered-temple-5934.herokuapp.com/')
 
 
