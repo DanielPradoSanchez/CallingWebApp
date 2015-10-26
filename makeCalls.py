@@ -65,15 +65,15 @@ def add_call():
 			# registered and when it is to be executed.
 
 			delta_t=callTimeUTC-timeOfRequestUTC
-			flash(str(callTimeUTC))
-			flash(str(timeOfRequestUTC))
-			flash(str(delta_t))
-			secs=delta_t.seconds+1
+			#flash(str(callTimeUTC))
+			#flash(str(timeOfRequestUTC))
+			#flash(str(delta_t))
+			secs=delta_t.total_seconds
 
 			callList.appendCall(callNumber, timeToCall)
 			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
 			t.start()
-			flash('Your call was not recorded. Some of the information did not match an account.')
+			flash('Your call has been recorded')
 			
 		else:
 			flash('Your call was not recorded. Please select some time in the future for your call to be made.')
