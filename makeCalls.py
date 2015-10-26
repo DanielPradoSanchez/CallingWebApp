@@ -18,7 +18,6 @@ from datetime import datetime
 from datetime import timedelta
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack
-from model import CallList
 from twilio.rest import TwilioRestClient
 from twilio import TwilioRestException
 from threading import Timer
@@ -32,14 +31,11 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
 
-# initialize empty call list
-callList = CallList()
-
 
 @app.route('/')
 def public_calls():
 	# Displays the pending calls
-	return render_template('layout.html', calls=callList.getCalls())
+	return render_template('layout.html')
 
 
 @app.route('/add_call', methods=['POST'])
@@ -61,7 +57,6 @@ def add_call():
 		callTimeUTC = timedelta(0,14400) + callTimeLocal
 
 		if callTimeUTC > timeOfRequestUTC:
-			callList.appendCall(callNumber, timeToCall)
 			# Finds the difference between the time the call was 
 			# registered and when it is to be executed.
 			delta_t=callTimeUTC-timeOfRequestUTC
