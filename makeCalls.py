@@ -62,6 +62,7 @@ def add_call():
 		# and is placed on a pending/completed list of calls to be made.
 		flash(timeToCall)
 		flash(str(time_of_request))
+		flash(str(call_date > time_of_request))
 		# This needs to be changed. Place this logic inside of make_call.
 		if call_date > time_of_request:
 			flash('got here')
