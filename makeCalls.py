@@ -73,6 +73,7 @@ def add_call():
 				flash('Your call was recorded')
 			except TwilioRestException as e:
 				flash('Something went wrong')
+				return redirect(url_for('public_calls'))
 			#except twilio.TwilioRestException as e:
 			#flash('Your call was not recorded. Some of the information did not match an account.')
 			
