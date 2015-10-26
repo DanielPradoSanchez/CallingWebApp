@@ -24,6 +24,6 @@ The call wil say: My name is Daniel Prado. The top content on Reddit right now i
 
 
 Git pulls:
-The pull request for the calling web app is at: https://github.com/DanielPradoSanchez/theTest/pull/1
+The pull request for the calling web app is at: https://github.com/DanielPradoSanchez/CallingWebApp/pull/2
 
-The pull request for the web app that dictates what the call will say is at: 
+The pull request for the web app that dictates what the call will say is at: https://github.com/DanielPradoSanchez/SpeechForCallingWebApp/pull/1
