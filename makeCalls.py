@@ -15,6 +15,7 @@
 
 import time
 from datetime import datetime
+from dateutil import tz
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack
 from model import CallList
@@ -55,13 +56,18 @@ def add_call():
 		# Take date input and change to python datetime
 		call_date = datetime(*[int(v) for v in timeToCall.replace('T', '-').replace(':', '-').split('-')])
 
-		time_of_request=datetime.today()
+		from_zone = tz.tzutc()
+		to_zone = tz.tzlocal()
+
+		time_of_request=datetime.utcnow()
+		time_of_request = time_of_request.replace(tzinfo=from_zone)
+		local_time = time_of_request.astimezone(to_zone)
 
 		# Determines if the time the call is to executed is in the future.
 		# If the call is to be made in the future, the call goes through
 		# and is placed on a pending/completed list of calls to be made.
 		flash(timeToCall)
-		flash(str(time_of_request))
+		flash(str(local_time))
 		flash(str(call_date > time_of_request))
 		# This needs to be changed. Place this logic inside of make_call.
 		if call_date > time_of_request:
