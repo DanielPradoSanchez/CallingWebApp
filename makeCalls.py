@@ -67,13 +67,8 @@ def add_call():
 			secs=delta_t.seconds+1
 
 
-			try:
-				t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
-				t.start()
-				flash('Your call was recorded')
-			except TwilioRestException as e:
-				flash('Something went wrong')
-				return redirect(url_for('public_calls'))
+			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
+			t.start()
 			#except twilio.TwilioRestException as e:
 			#flash('Your call was not recorded. Some of the information did not match an account.')
 			
@@ -86,6 +81,11 @@ def add_call():
 def make_call(numberToCall, callFromNumber, SID, token):
     # To find these visit https://www.twilio.com/user/account
 	callList.appendCall(callNumber, timeToCall)
-	client = TwilioRestClient(SID, token)
-	call = client.calls.create(to=numberToCall, from_=callFromNumber, url='https://sheltered-temple-5934.herokuapp.com/')
+	try:
+		client = TwilioRestClient(SID, token)
+		call = client.calls.create(to=numberToCall, from_=callFromNumber, url='https://sheltered-temple-5934.herokuapp.com/')
+		flash('Your call was recorded')
+	except TwilioRestException as e:
+		flash('Something went wrong')
+
 
