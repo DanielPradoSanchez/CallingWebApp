@@ -87,5 +87,6 @@ def make_call(numberToCall, callFromNumber, SID, token):
 		flash('Your call was recorded')
 	except:
 		flash('Something went wrong')
+		return redirect(url_for('public_calls'))
 
 
