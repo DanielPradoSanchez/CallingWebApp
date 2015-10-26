@@ -85,7 +85,7 @@ def make_call(numberToCall, callFromNumber, SID, token):
 		client = TwilioRestClient(SID, token)
 		call = client.calls.create(to=numberToCall, from_=callFromNumber, url='https://sheltered-temple-5934.herokuapp.com/')
 		flash('Your call was recorded')
-	except TwilioRestException as e:
+	except:
 		flash('Something went wrong')
 
 
