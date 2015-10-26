@@ -57,9 +57,6 @@ def add_call():
 		# Take date input and change to python datetime
 		call_date = datetime(*[int(v) for v in timeToCall.replace('T', '-').replace(':', '-').split('-')])
 
-		from_zone = tz.tzutc()
-		to_zone = tz.tzlocal()
-
 		time_of_request_utc=datetime.today()
 		
 		time_of_request = timedelta(0,14400) + time_of_request_utc
