@@ -52,32 +52,23 @@ def add_call():
 	timeToCall = request.form['time_to_call']
 
 	#allEntriesAnswered = (callNumber and callFrom and accountSid and authToken and timeToCall)
-	if (callNumber and timeToCall and accountSid and authToken and timeToCall):
+	if (callNumber and callFrom and accountSid and authToken and timeToCall):
 		# Take date input and change to python datetime
-		call_date = datetime(*[int(v) for v in timeToCall.replace('T', '-').replace(':', '-').split('-')])
+		callTimeLocal = datetime(*[int(v) for v in timeToCall.replace('T', '-').replace(':', '-').split('-')])
 
-		time_of_request_utc=datetime.today()
+		timeOfRequestUTC=datetime.today()
 		
-		time_of_request = timedelta(0,14400) + call_date
-		# Determines if the time the call is to executed is in the future.
-		# If the call is to be made in the future, the call goes through
-		# and is placed on a pending/completed list of calls to be made.
-		flash(timeToCall)
-		flash(str(local_time))
-		flash(str(call_date > time_of_request))
-		# This needs to be changed. Place this logic inside of make_call.
-		if call_date > time_of_request:
+		callTimeUTC = timedelta(0,14400) + callTimeLocal
+
+		if callTimeUTC > timeOfRequestUTC:
 			flash('got here')
 			# Finds the difference between the time the call was 
 			# registered and when it is to be executed.
-			delta_t=call_date-time_of_request
+			delta_t=callTimeUTC-timeOfRequestUTC
 			secs=delta_t.seconds+1
 
 
-        	# Check if token and sid work
-        	# look online for api (authentication checking)
-        	# If that's not an option, look into python callbacks
-        	# or try catch method
+
 			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
 			callList.appendCall(callNumber, call_date)
 			t.start()
