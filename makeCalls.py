@@ -15,7 +15,8 @@
 
 import time
 from datetime import datetime
-from dateutil import tz
+from datetime import timedelta
+import pytz
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack
 from model import CallList
@@ -59,10 +60,9 @@ def add_call():
 		from_zone = tz.tzutc()
 		to_zone = tz.tzlocal()
 
-		time_of_request=datetime.utcnow()
-		time_of_request = time_of_request.replace(tzinfo=from_zone)
-		local_time = time_of_request.astimezone(to_zone)
-
+		time_of_request_utc=datetime.today()
+		
+		time_of_request = timedelta(0,14400) + time_of_request_utc
 		# Determines if the time the call is to executed is in the future.
 		# If the call is to be made in the future, the call goes through
 		# and is placed on a pending/completed list of calls to be made.
