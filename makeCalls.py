@@ -60,7 +60,8 @@ def add_call():
 		
 		callTimeUTC = timedelta(0,14400) + callTimeLocal
 
-		if callTimeUTC > timeOfRequestUTC:
+		#if callTimeUTC > timeOfRequestUTC:
+		if False:
 			flash('got here')
 			# Finds the difference between the time the call was 
 			# registered and when it is to be executed.
