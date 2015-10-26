@@ -70,7 +70,7 @@ def add_call():
 
 
 			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
-			callList.appendCall(callNumber, call_date)
+			callList.appendCall(callNumber, timeToCall)
 			t.start()
 			flash('Your call was recorded')
 			#except twilio.TwilioRestException as e:
