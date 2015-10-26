@@ -61,18 +61,18 @@ def add_call():
 		callTimeUTC = timedelta(0,14400) + callTimeLocal
 
 		if callTimeUTC > timeOfRequestUTC:
-			flash('got here')
 			# Finds the difference between the time the call was 
 			# registered and when it is to be executed.
 			delta_t=callTimeUTC-timeOfRequestUTC
 			secs=delta_t.seconds+1
 
 
-
-			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
-			callList.appendCall(callNumber, timeToCall)
-			t.start()
-			flash('Your call was recorded')
+			try:
+				t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
+				t.start()
+				flash('Your call was recorded')
+			except TwilioRestException as e:
+				flash('Something went wrong')
 			#except twilio.TwilioRestException as e:
 			#flash('Your call was not recorded. Some of the information did not match an account.')
 			
@@ -84,5 +84,6 @@ def add_call():
 
 def make_call(numberToCall, callFromNumber, SID, token):
     # To find these visit https://www.twilio.com/user/account
+    callList.appendCall(callNumber, timeToCall)
 	client = TwilioRestClient(SID, token)
 	call = client.calls.create(to=numberToCall, from_=callFromNumber, url='https://sheltered-temple-5934.herokuapp.com/')
