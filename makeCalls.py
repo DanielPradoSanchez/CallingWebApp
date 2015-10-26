@@ -19,7 +19,6 @@ from datetime import timedelta
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack
 from twilio.rest import TwilioRestClient
-from twilio import TwilioRestException
 from threading import Timer
 import praw
 
