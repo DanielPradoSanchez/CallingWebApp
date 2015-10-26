@@ -67,9 +67,9 @@ def add_call():
 			delta_t=callTimeUTC-timeOfRequestUTC
 			#flash(str(callTimeUTC))
 			#flash(str(timeOfRequestUTC))
-			#flash(str(delta_t))
-			secs=delta_t.total_seconds
-
+			
+			secs=delta_t.total_seconds()
+			flash(str(secs))
 			callList.appendCall(callNumber, timeToCall)
 			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
 			t.start()
