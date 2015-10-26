@@ -63,10 +63,11 @@ def add_call():
 		if callTimeUTC > timeOfRequestUTC:
 			# Finds the difference between the time the call was 
 			# registered and when it is to be executed.
+
 			delta_t=callTimeUTC-timeOfRequestUTC
 			secs=delta_t.seconds+1
 
-
+			callList.appendCall(callNumber, timeToCall)
 			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
 			t.start()
 			#except twilio.TwilioRestException as e:
@@ -80,8 +81,5 @@ def add_call():
 
 def make_call(numberToCall, callFromNumber, SID, token):
     # To find these visit https://www.twilio.com/user/account
-    callList.appendCall(callNumber, timeToCall)
 	client = TwilioRestClient(SID, token)
 	call = client.calls.create(to=numberToCall, from_=callFromNumber, url='https://sheltered-temple-5934.herokuapp.com/')
-
-
