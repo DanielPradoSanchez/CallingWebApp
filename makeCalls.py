@@ -83,6 +83,7 @@ def add_call():
 				flash('Your call was not recorded. Some of the information did not match an account.')
 			
 		else:
+			pass
 			#flash('Your call was not recorded. Please select some time in the future for your call to be made.')
 	else:
 		flash('Your call was not recorded. Please make sure all fields have an answer')
