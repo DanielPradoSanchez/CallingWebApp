@@ -63,6 +63,7 @@ def add_call():
 
 		# This needs to be changed. Place this logic inside of make_call.
 		if call_date > time_of_request:
+			flash('got here')
 			# Finds the difference between the time the call was 
 			# registered and when it is to be executed.
 			delta_t=call_date-time_of_request
@@ -82,7 +83,7 @@ def add_call():
 				flash('Your call was not recorded. Some of the information did not match an account.')
 			
 		else:
-			flash('Your call was not recorded. Please select some time in the future for your call to be made.')
+			#flash('Your call was not recorded. Please select some time in the future for your call to be made.')
 	else:
 		flash('Your call was not recorded. Please make sure all fields have an answer')
 	return redirect(url_for('public_calls'))
