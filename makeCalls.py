@@ -53,14 +53,14 @@ def add_call():
 	#allEntriesAnswered = (callNumber and callFrom and accountSid and authToken and timeToCall)
 	if (callNumber and timeToCall and accountSid and authToken and timeToCall):
 		# Take date input and change to python datetime
-		call_date = datetime(*[int(v) for v in request.form['time_to_call'].replace('T', '-').replace(':', '-').split('-')])
+		call_date = datetime(*[int(v) for v in timeToCall.replace('T', '-').replace(':', '-').split('-')])
 
 		time_of_request=datetime.today()
 
 		# Determines if the time the call is to executed is in the future.
 		# If the call is to be made in the future, the call goes through
 		# and is placed on a pending/completed list of calls to be made.
-		flash(calldate + ', ' + time_of_request)
+		flash(timeToCall)
 		# This needs to be changed. Place this logic inside of make_call.
 		if call_date > time_of_request:
 			flash('got here')
