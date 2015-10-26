@@ -61,16 +61,11 @@ def add_call():
 		callTimeUTC = timedelta(0,14400) + callTimeLocal
 
 		if callTimeUTC > timeOfRequestUTC:
+			callList.appendCall(callNumber, timeToCall)
 			# Finds the difference between the time the call was 
 			# registered and when it is to be executed.
-
 			delta_t=callTimeUTC-timeOfRequestUTC
-			#flash(str(callTimeUTC))
-			#flash(str(timeOfRequestUTC))
-			
 			secs=delta_t.total_seconds()
-			flash(str(secs))
-			callList.appendCall(callNumber, timeToCall)
 			Timer(secs, make_call,[callNumber, callFrom, accountSid,authToken]).start()
 			flash('Your call has been recorded')
 			
