@@ -72,7 +72,6 @@ def add_call():
 			flash(str(secs))
 			callList.appendCall(callNumber, timeToCall)
 			t = Timer(secs, make_call(callNumber, callFrom, accountSid,authToken))
-			t.start()
 			flash('Your call has been recorded')
 			
 		else:
